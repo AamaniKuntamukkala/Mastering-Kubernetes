@@ -1,0 +1,339 @@
+apiVersion: kops.k8s.io/v1alpha2
+kind: Cluster
+metadata:
+  creationTimestamp: null
+  name: aamani344.info
+spec:
+  api:
+    loadBalancer:
+      type: Public
+  authorization:
+    rbac: {}
+  channel: stable
+  cloudConfig:
+    azure:
+      storageAccountID: /subscriptions/73325b5f-dd1c-46f6-89ad-748adf69b5b9/resourceGroups/Kubernetes/providers/Microsoft.Storage/storageAccounts/aamani344
+      subscriptionId: 73325b5f-dd1c-46f6-89ad-748adf69b5b9
+      tenantId: ""
+  cloudProvider: azure
+  configBase: azureblob://aamani344/aamani344.info
+  dnsZone: aamani344.info
+  etcdClusters:
+  - cpuRequest: 200m
+    etcdMembers:
+    - instanceGroup: control-plane-eastasia-2-1
+      name: etcd-1
+    - instanceGroup: control-plane-eastasia-2-2
+      name: etcd-2
+    - instanceGroup: control-plane-eastasia-2-3
+      name: etcd-3
+    manager:
+      backupRetentionDays: 90
+    memoryRequest: 100Mi
+    name: main
+  - cpuRequest: 100m
+    etcdMembers:
+    - instanceGroup: control-plane-eastasia-2-1
+      name: etcd-1
+    - instanceGroup: control-plane-eastasia-2-2
+      name: etcd-2
+    - instanceGroup: control-plane-eastasia-2-3
+      name: etcd-3
+    manager:
+      backupRetentionDays: 90
+    memoryRequest: 100Mi
+    name: events
+  iam:
+    allowContainerRegistry: true
+    legacy: false
+  kubelet:
+    anonymousAuth: false
+  kubernetesApiAccess:
+  - 0.0.0.0/0
+  - ::/0
+  kubernetesVersion: 1.32.8
+  masterPublicName: api.aamani344.info
+  networkCIDR: 10.0.0.0/16
+  networking:
+    calico: {}
+  nonMasqueradeCIDR: 100.64.0.0/10
+  sshAccess:
+  - 0.0.0.0/0
+  - ::/0
+  subnets:
+  - cidr: 10.0.128.0/17
+    name: aamani344.info
+    region: eastasia
+    type: Private
+  - cidr: 10.0.0.0/20
+    name: utility-aamani344.info
+    region: eastasia
+    type: Utility
+  topology:
+    dns:
+      type: Public
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: nullapiVersion: kops.k8s.io/v1alpha2
+kind: Cluster
+metadata:
+  creationTimestamp: null
+  name: aamani344.info
+spec:
+  api:
+    loadBalancer:
+      type: Public
+  authorization:
+    rbac: {}
+  channel: stable
+  cloudConfig:
+    azure:
+      storageAccountID: /subscriptions/73325b5f-dd1c-46f6-89ad-748adf69b5b9/resourceGroups/Kubernetes/providers/Microsoft.Storage/storageAccounts/aamani344
+      subscriptionId: 73325b5f-dd1c-46f6-89ad-748adf69b5b9
+      tenantId: ""
+  cloudProvider: azure
+  configBase: azureblob://aamani344/aamani344.info
+  dnsZone: aamani344.info
+  etcdClusters:
+  - cpuRequest: 200m
+    etcdMembers:
+    - instanceGroup: control-plane-eastasia-2-1
+      name: etcd-1
+    - instanceGroup: control-plane-eastasia-2-2
+      name: etcd-2
+    - instanceGroup: control-plane-eastasia-2-3
+      name: etcd-3
+    manager:
+      backupRetentionDays: 90
+    memoryRequest: 100Mi
+    name: main
+  - cpuRequest: 100m
+    etcdMembers:
+    - instanceGroup: control-plane-eastasia-2-1
+      name: etcd-1
+    - instanceGroup: control-plane-eastasia-2-2
+      name: etcd-2
+    - instanceGroup: control-plane-eastasia-2-3
+      name: etcd-3
+    manager:
+      backupRetentionDays: 90
+    memoryRequest: 100Mi
+    name: events
+  iam:
+    allowContainerRegistry: true
+    legacy: false
+  kubelet:
+    anonymousAuth: false
+  kubernetesApiAccess:
+  - 0.0.0.0/0
+  - ::/0
+  kubernetesVersion: 1.32.8
+  masterPublicName: api.aamani344.info
+  networkCIDR: 10.0.0.0/16
+  networking:
+    calico: {}
+  nonMasqueradeCIDR: 100.64.0.0/10
+  sshAccess:
+  - 0.0.0.0/0
+  - ::/0
+  subnets:
+  - cidr: 10.0.128.0/17
+    name: aamani344.info
+    region: eastasia
+    type: Private
+  - cidr: 10.0.0.0/20
+    name: utility-aamani344.info
+    region: eastasia
+    type: Utility
+  topology:
+    dns:
+      type: Public
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: aamani344.info
+  name: control-plane-eastasia-2-1
+spec:
+  image: Canonical:ubuntu-24_04-lts:server:24.04.202507010
+  machineType: Standard_D2s_v2
+  maxSize: 1
+  minSize: 1
+  role: Master
+  rootVolumeSize: 10
+  subnets:
+  - aamani344.info
+  zones:
+  - eastasia-2
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: aamani344.info
+  name: control-plane-eastasia-2-2
+spec:
+  image: Canonical:ubuntu-24_04-lts:server:24.04.202507010
+  machineType: Standard_D2s_v2
+  maxSize: 1
+  minSize: 1
+  role: Master
+  rootVolumeSize: 10
+  subnets:
+  - aamani344.info
+  zones:
+  - eastasia-2
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: aamani344.info
+  name: control-plane-eastasia-2-3
+spec:
+  image: Canonical:ubuntu-24_04-lts:server:24.04.202507010
+  machineType: Standard_D2s_v2
+  maxSize: 1
+  minSize: 1
+  role: Master
+  rootVolumeSize: 10
+  subnets:
+  - aamani344.info
+  zones:
+  - eastasia-2
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: aamani344.info
+  name: nodes-eastasia-2
+spec:
+  image: Canonical:ubuntu-24_04-lts:server:24.04.202507010
+  machineType: Standard_D2s_v2
+  maxSize: 3
+  minSize: 3
+  role: Node
+  rootVolumeSize: 10
+  subnets:
+  - aamani344.info
+  zones:
+  - eastasia-2
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: SSHCredential
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: aamani344.info
+  name: admin
+spec:
+  publicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCxfdobllFA1nACaPcyjetH9G/OrX9vTcvIMo7UYXgQEYHDsAu0MakQ9F3aULYrsfnyELUrKdF36+uCf81NfawUHbdYxIjFm56AjJNjdPKX7r2r+7OIu0bf5P/j3zZAJMxAWph3cCD56VidnnoDnfrQEFrbA8ofDse8UZ31AYmSaJHj1HFpRZcwsVc0lrwcZyx6ZU3pvB1717TCtGteRHV/b2yEUUOGbJKWyqoe2Wi3num0sKy9NL0uRsy/2VqlP15KT7mFVahH+SoyR3CvkKJNHtdeuzlthyKmONq5qyhAX6TFLH70iKI3zu3AOC0KyCyIsU1huSuLJOrt38yUjhqpi8sVGoTaBv+dQ+XJwyXYY8nHvC9gCnn2KzkrfLgVhLUCA2raiO/34ScUHijci6xsVL/ntw4miMxa0gEeseyc3k0Itljrm3bM02ZgUWYtNvOCENPvBHmad0BYq4roS9+3jP7cqyKgJb/tUo4tMuS4GGHGSBj0xHTqv3BQUfx9fXs=
+  labels:
+    kops.k8s.io/cluster: aamani344.info
+  name: control-plane-eastasia-2-1
+spec:
+  image: Canonical:ubuntu-24_04-lts:server:24.04.202507010
+  machineType: Standard_D2s_v2
+  maxSize: 1
+  minSize: 1
+  role: Master
+  rootVolumeSize: 10
+  subnets:
+  - aamani344.info
+  zones:
+  - eastasia-2
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: aamani344.info
+  name: control-plane-eastasia-2-2
+spec:
+  image: Canonical:ubuntu-24_04-lts:server:24.04.202507010
+  machineType: Standard_D2s_v2
+  maxSize: 1
+  minSize: 1
+  role: Master
+  rootVolumeSize: 10
+  subnets:
+  - aamani344.info
+  zones:
+  - eastasia-2
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: aamani344.info
+  name: control-plane-eastasia-2-3
+spec:
+  image: Canonical:ubuntu-24_04-lts:server:24.04.202507010
+  machineType: Standard_D2s_v2
+  maxSize: 1
+  minSize: 1
+  role: Master
+  rootVolumeSize: 10
+  subnets:
+  - aamani344.info
+  zones:
+  - eastasia-2
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: aamani344.info
+  name: nodes-eastasia-2
+spec:
+  image: Canonical:ubuntu-24_04-lts:server:24.04.202507010
+  machineType: Standard_D2s_v2
+  maxSize: 3
+  minSize: 3
+  role: Node
+  rootVolumeSize: 10
+  subnets:
+  - aamani344.info
+  zones:
+  - eastasia-2
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: SSHCredential
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: aamani344.info
+  name: admin
+spec:
+  publicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCxfdobllFA1nACaPcyjetH9G/OrX9vTcvIMo7UYXgQEYHDsAu0MakQ9F3aULYrsfnyELUrKdF36+uCf81NfawUHbdYxIjFm56AjJNjdPKX7r2r+7OIu0bf5P/j3zZAJMxAWph3cCD56VidnnoDnfrQEFrbA8ofDse8UZ31AYmSaJHj1HFpRZcwsVc0lrwcZyx6ZU3pvB1717TCtGteRHV/b2yEUUOGbJKWyqoe2Wi3num0sKy9NL0uRsy/2VqlP15KT7mFVahH+SoyR3CvkKJNHtdeuzlthyKmONq5qyhAX6TFLH70iKI3zu3AOC0KyCyIsU1huSuLJOrt38yUjhqpi8sVGoTaBv+dQ+XJwyXYY8nHvC9gCnn2KzkrfLgVhLUCA2raiO/34ScUHijci6xsVL/ntw4miMxa0gEeseyc3k0Itljrm3bM02ZgUWYtNvOCENPvBHmad0BYq4roS9+3jP7cqyKgJb/tUo4tMuS4GGHGSBj0xHTqv3BQUfx9fXs=
