@@ -33,8 +33,59 @@ Once the IP is assigned, you can map it to a domain and configure TLS if needed.
 
 ---
 
-### 🧠 Pro Tip
+This setup is configuring **secure ingress and private image access** in Kubernetes. Let’s break it down step by step:
 
-If you're using the **AKS Application Gateway Ingress Controller (AGIC)** instead of NGINX, the setup is different. Let me know if you want to explore that route or wire this into a full HTTPS ingress with TLS secrets.
+---
 
-Sources: [Microsoft Learn](https://learn.microsoft.com/en-us/azure/aks/app-routing-nginx-configuration), [GitHub ingress-nginx deploy guide](https://github.com/kubernetes/ingress-nginx/blob/main/docs/deploy/index.md).
+### 🔐 1. **Ingress Controller Deployment**
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.1/deploy/static/provider/aws/
+```
+
+- This command deploys the **NGINX Ingress Controller** on an AWS-based Kubernetes cluster.
+- It enables routing external HTTP/HTTPS traffic to internal services using Ingress rules.
+
+---
+
+### 🔐 2. **TLS Secret for HTTPS**
+
+```bash
+kubectl create secret tls nginx-tls-default --key='tls.key' --cert='tls.crt'
+```
+
+- Creates a **TLS secret** named `nginx-tls-default`.
+- Used by the Ingress Controller to serve HTTPS traffic securely.
+- `tls.key` and `tls.crt` are your SSL certificate and private key files.
+
+---
+
+### 🐳 3. **Docker Registry Secret**
+
+```bash
+kubectl create secret docker-registry docker-pwd \
+--docker-server=docker.io \
+--docker-username=kiran2516993 \
+--docker-password=8KMA8F10zkFtKAMYvh2s6p0E \
+--docker-email=pinapathuri.saikiran@gmail.com
+```
+
+- Creates a secret named `docker-pwd` for pulling images from a **private Docker Hub repository**.
+- This secret is used in your pod specs like this:
+
+```yaml
+imagePullSecrets:
+  - name: docker-pwd
+```
+
+---
+
+### 🧠 Summary
+
+| Component        | Purpose                                      |
+|------------------|----------------------------------------------|
+| Ingress Controller | Routes external traffic to services         |
+| TLS Secret       | Enables HTTPS via SSL certificates           |
+| Docker Secret    | Authenticates with private Docker registry   |
+
+Would you like help wiring this into an Ingress rule or validating the TLS setup with a test domain?
