@@ -65,9 +65,9 @@ kubectl create secret tls nginx-tls-default --key='tls.key' --cert='tls.crt'
 ```bash
 kubectl create secret docker-registry docker-pwd \
 --docker-server=docker.io \
---docker-username=kiran2516993 \
---docker-password=8KMA8F10zkFtKAMYvh2s6p0E \
---docker-email=pinapathuri.saikiran@gmail.com
+--docker-username=aamanideva344 \
+--docker-password=WelcomeBack@12345 \
+--docker-email=aamani344@gmail.com
 ```
 
 - Creates a secret named `docker-pwd` for pulling images from a **private Docker Hub repository**.
