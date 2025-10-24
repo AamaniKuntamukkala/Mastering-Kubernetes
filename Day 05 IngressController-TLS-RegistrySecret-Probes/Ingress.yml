@@ -10,10 +10,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - "result.cloudvishwakarma.in"
+    - "result.aamani344.info"
     secretName: nginx-tls-default
   rules:
-  - host: result.cloudvishwakarma.in
+  - host: result.aamani344.info
     http:
       paths:
       - path: /
@@ -37,11 +37,11 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - "vote.cloudvishwakarma.in"
-    - "www.cloudvishwakarma.in"
+    - "result.aamani344.info"
+    - "www.aamani344.info"
     secretName: nginx-tls-default
   rules:
-  - host: vote.cloudvishwakarma.in
+  - host: vote.aamani344.info
     http:
       paths:
       - path: /
@@ -51,7 +51,7 @@ spec:
             name: vote
             port:
               number: 80
-  - host: www.cloudvishwakarma.in
+  - host: www.aamani344.info
     http: 
       paths:
       - path: /
@@ -62,4 +62,4 @@ spec:
             port:
               number: 80
 
----
+
