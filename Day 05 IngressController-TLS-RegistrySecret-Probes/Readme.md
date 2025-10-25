@@ -66,7 +66,7 @@ kubectl create secret tls nginx-tls-default --key='tls.key' --cert='tls.crt'
 kubectl create secret docker-registry docker-pwd \
 --docker-server=docker.io \
 --docker-username=aamanideva344 \
---docker-password=WelcomeBack@12345 \
+--docker-password=****** \
 --docker-email=aamani344@gmail.com
 ```
 
